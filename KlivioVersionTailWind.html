@@ -9,8 +9,10 @@
     <!--CSS styling-->
     <link rel="stylesheet" href="./src/output.css">
 
-    <!--Icons-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Manrope&family=Maven+Pro&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -19,9 +21,9 @@
     <header>
 <!--Navbar-->
         <nav class="fixed top-0 z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-32 backdrop-blur text-white text-sm">
-            <img class="grayscale" src="./assets/images/logo.png" width="100" height="auto" viewBox="0 0 155 40">
+            <img class="grayscale" src="./assets/images/logo.png" alt="logo klivio" width="100">
 
-            <div class="hidden md:flex items-center gap-8 transition duration-500">
+            <div class="ml-3 mr-3 hidden md:flex items-center gap-8 transition duration-500">
                 <p class="hover:text-purple-600 transition text-base">
                 Les Formations
                 </p>
@@ -29,9 +31,8 @@
 
             <form class="hidden md:flex">
                 <div class="relative">
-                    <div class="flex px-4 py-3 rounded-md border-2 border-purple-500/30 overflow-hidden max-w-md mx-auto">
-                        <input type="text" placeholder="Rechercher"
-                        class="w-full outline-none bg-transparent text-gray-600 text-sm" />
+                    <div class="flex w-xl px-4 py-3 ml-3 mr-3 rounded-md border-2 border-purple-500/30 overflow-hidden max-w-md mx-auto">
+                        <input type="text" placeholder="Rechercher" class="w-full outline-none bg-transparent text-gray-600 text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="16px" class="fill-gray-600">
                         <path
                         d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
@@ -56,10 +57,39 @@
             </button>
         </nav>
 
+        <div id="mobile-navlinks" class="fixed inset-0 z-100 bg-black/40 text-white backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300 -translate-x-full">
+            <a class="hover:text-purple-500 transition">Les Formations</a>
+            <a class="hover:text-purple-500 transition">Inscription</a>
+            <a class="hover:text-purple-500 transition">Connexion</a>
+
+            <button id="close-menu" class="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-purple-600 hover:bg-purple-700 transition text-white rounded-md flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+
     </header>
 
-    
+    <script>
+        const openMenu = document.getElementById("open-menu");
+        const closeMenu = document.getElementById("close-menu");
+        const navlinks = document.getElementById("mobile-navlinks");
+
+        const openMenuHandler = () => {
+            navlinks.classList.remove("-translate-x-full")
+            navlinks.classList.add("translate-x-0")
+        }
+
+        const closeMenuHandler = () => {
+            navlinks.classList.remove("translate-x-0")
+            navlinks.classList.add("-translate-x-full")
+        }
+
+        openMenu.addEventListener("click", openMenuHandler);
+        closeMenu.addEventListener("click", closeMenuHandler);
+    </script>
+
     <main>
+
 <!--Hero Section-->
 
         <section class="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-32 bg-black text-white">
@@ -74,7 +104,7 @@
                 En savoir plus
                 </button>
             </div>
-            <img src="./assets/images/bg-header.png" class="w-full rounded-[15px] max-w-4xl mt-10 mb-20 opacity-50 mask-b-from-30%" alt="une dame est à son bureau entrain de travailler"/>
+            <img src="./assets/images/bg-header.png" alt="dame en réflexion à un bureau devant un ordinateur" class="w-full rounded-[15px] max-w-4xl mt-10 mb-20 opacity-50 mask-b-from-30%">
         </section>
 
 
@@ -93,26 +123,27 @@
     </section>
 
     <section class="bg-black py-12 px-4">
-            <div class="flex flex-wrap items-stretch justify-center gap-6 md:gap-4 mt-10 px-6 md:px-16 lg:px-24 xl:px-32">
+        <div class="flex flex-wrap items-stretch justify-center gap-6 md:gap-4 mt-10 px-6 md:px-16 lg:px-24 xl:px-32">
 <!--Card 1-->
                 <div class="max-w-80 mr-5 ml-5 mb-5 mt-5 md:max-w-66 bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 ease-in-out p-8 relative overflow-hidden border border-white/20">
                     <div class="absolute -top-20 -right-20 w-40 h-40 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
                     <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-sky-400 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
 
                     <div class="flex justify-center mt-5 mb-6 relative z-10">
-                    <div class="relative group">
-                    <div class="group-hover:blur-lg transition-all duration-500"></div>
-                    <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
-                    src="./assets/images/img-course.png" 
-                    alt="Profile Image">
-                    </div>
+                        <div class="relative group">
+                        <div class="group-hover:blur-lg transition-all duration-500"></div>
+                        <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
+                        src="./assets/images/img-course.png" 
+                        alt="image de la couleur grise">
+                        </div>
                     </div>
 
                     <div class="text-center mb-3 relative z-10">
                         <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">
                             <span class="relative inline-block">
-                            Parler en public
-                            <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                Parler en public
+                                <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
+                                </span>
                             </span>
                         </h2>
                             <p class="mt-3 mb-2.5 text-lg font-extrabold text-purple-400">15,99 € <span class="inline-block align-text-top text-xs text-purple-200 font-extralight line-through">60 €</span></p>
@@ -122,7 +153,7 @@
                     Gagnez en aisance et capturez votre auditoire
                     </p>
                     <div class="flex justify-center">
-                        <img src="./assets/icons/note.png" width="100" height="auto">
+                        <img src="./assets/icons/note.png" alt="image de 5 étoiles jaunes" width="100">
                     </div>
                 </div>
 <!--card 2-->
@@ -132,11 +163,11 @@
 
                     <div class="absolute inset-0 from-purple-400/10 via-transparent to-blue-400/10 rounded-3xl"></div>
                     <div class="flex justify-center mt-5 mb-6 relative z-10">
-                    <div class="relative group">
-                    <div class="group-hover:blur-lg transition-all duration-500"></div>
-                    <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
-                    src="./assets/images/img-course.png" 
-                    alt="Profile Image">
+                        <div class="relative group">
+                        <div class="group-hover:blur-lg transition-all duration-500"></div>
+                        <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
+                        src="./assets/images/img-course.png" 
+                        alt="image de la couleur grise">
                     </div>
                     </div>
 
@@ -144,7 +175,8 @@
                         <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">
                             <span class="relative inline-block">
                             Gérer le stress
-                            <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
+                                </span>
                             </span>
                         </h2>
                             <p class="mt-3 mb-2.5 text-lg font-extrabold text-purple-400">15,99 € <span class="inline-block align-text-top text-xs text-purple-200 font-extralight line-through">60 €</span></p>
@@ -154,7 +186,7 @@
                     Apprenez à rester serein face aux défis
                     </p>
                     <div class="flex justify-center">
-                        <img src="./assets/icons/note.4.png" width="100" height="auto">
+                        <img src="./assets/icons/note.4.png" alt="image de 4 étoiles jaunes" width="100">
                     </div>
                 </div>
 <!--card 3-->
@@ -164,19 +196,20 @@
 
                     <div class="absolute inset-0 from-purple-400/10 via-transparent to-blue-400/10 rounded-3xl"></div>
                     <div class="flex justify-center mt-5 mb-6 relative z-10">
-                    <div class="relative group">
-                    <div class="group-hover:blur-lg transition-all duration-500"></div>
-                    <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
-                    src="./assets/images/img-course.png" 
-                    alt="Profile Image">
-                    </div>
+                        <div class="relative group">
+                            <div class="group-hover:blur-lg transition-all duration-500"></div>
+                            <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
+                            src="./assets/images/img-course.png" 
+                            alt="image de la couleur grise">
+                        </div>
                     </div>
 
                     <div class="text-center mb-3 relative z-10">
                         <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">
                             <span class="relative inline-block">
                             Travailler en équipe
-                            <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
+                                </span>
                             </span>
                         </h2>
                             <p class="mt-3 mb-2.5 text-lg font-extrabold text-purple-400">15,99 € <span class="inline-block align-text-top text-xs text-purple-200 font-extralight line-through">60 €</span></p>
@@ -186,7 +219,7 @@
                     Collaborez efficacement, même à distance
                     </p>
                     <div class="flex justify-center">
-                        <img src="./assets/icons/note.png" width="100" height="auto">
+                        <img src="./assets/icons/note.png" alt="image de 5 étoiles jaunes" width="100">
                     </div>
                 </div>
 <!--card 4-->
@@ -196,19 +229,20 @@
 
                     <div class="absolute inset-0 from-purple-400/10 via-transparent to-blue-400/10 rounded-3xl"></div>
                     <div class="flex justify-center mt-5 mb-6 relative z-10">
-                    <div class="relative group">
-                    <div class="group-hover:blur-lg transition-all duration-500"></div>
-                    <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
-                    src="./assets/images/img-course.png" 
-                    alt="Profile Image">
-                    </div>
+                        <div class="relative group">
+                            <div class="group-hover:blur-lg transition-all duration-500"></div>
+                            <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
+                            src="./assets/images/img-course.png" 
+                            alt="image de la couleur grise">
+                        </div>
                     </div>
 
                     <div class="text-center mb-3 relative z-10">
                         <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">
                             <span class="relative inline-block">
                             Gérer son temps
-                            <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
+                                </span>
                             </span>
                         </h2>
                             <p class="mt-3 mb-2.5 text-lg font-extrabold text-purple-400">15,99 € <span class="inline-block align-text-top text-xs text-purple-200 font-extralight line-through">60 €</span></p>
@@ -218,7 +252,7 @@
                     Optimisez vos journées et gagnez en efficacité
                     </p>
                     <div class="flex justify-center">
-                        <img src="./assets/icons/note.4.png" width="100" height="auto">
+                        <img src="./assets/icons/note.4.png" alt="image de 4 étoiles jaunes" width="100">
                     </div>
                 </div>
 
@@ -229,19 +263,20 @@
 
                     <div class="absolute inset-0 from-purple-400/10 via-transparent to-blue-400/10 rounded-3xl"></div>
                     <div class="flex justify-center mt-5 mb-6 relative z-10">
-                    <div class="relative group">
-                    <div class="group-hover:blur-lg transition-all duration-500"></div>
-                    <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
-                    src="./assets/images/img-course.png" 
-                    alt="Profile Image">
-                    </div>
+                        <div class="relative group">
+                            <div class="group-hover:blur-lg transition-all duration-500"></div>
+                            <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
+                            src="./assets/images/img-course.png" 
+                            alt="image de la couleur grise">
+                        </div>
                     </div>
 
                     <div class="text-center mb-3 relative z-10">
                         <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">
                             <span class="relative inline-block">
                             Mieux communiquer
-                            <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
+                                </span>
                             </span>
                         </h2>
                             <p class="mt-3 mb-2.5 text-lg font-extrabold text-purple-400">15,99 € <span class="inline-block align-text-top text-xs text-purple-200 font-extralight line-through">60 €</span></p>
@@ -251,7 +286,7 @@
                     Améliorez vos échanges et votre impact relationnel
                     </p>
                     <div class="flex justify-center">
-                        <img src="./assets/icons/note.png" width="100" height="auto">
+                        <img src="./assets/icons/note.png" alt="image de 5 étoiles jaunes" width="100">
                     </div>
                 </div>
 <!--card 6-->
@@ -261,19 +296,20 @@
 
                     <div class="absolute inset-0 from-purple-400/10 via-transparent to-blue-400/10 rounded-3xl"></div>
                     <div class="flex justify-center mt-5 mb-6 relative z-10">
-                    <div class="relative group">
-                    <div class="group-hover:blur-lg transition-all duration-500"></div>
-                    <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
-                    src="./assets/images/img-course.png" 
-                    alt="Profile Image">
-                    </div>
+                        <div class="relative group">
+                            <div class="group-hover:blur-lg transition-all duration-500"></div>
+                            <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
+                            src="./assets/images/img-course.png" 
+                            alt="image de la couleur grise">
+                        </div>
                     </div>
 
                     <div class="text-center mb-3 relative z-10">
                         <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">
                             <span class="relative inline-block">
                             Maîtriser ses émotions
-                            <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
+                                </span>
                             </span>
                         </h2>
                             <p class="mt-3 mb-2.5 text-lg font-extrabold text-purple-400">15,99 € <span class="inline-block align-text-top text-xs text-purple-200 font-extralight line-through">60 €</span></p>
@@ -283,7 +319,7 @@
                     Développez calme et intelligence émotionelle
                     </p>
                     <div class="flex justify-center">
-                        <img src="./assets/icons/note.png" width="100" height="auto">
+                        <img src="./assets/icons/note.png" alt="image de 5 étoiles jaunes" width="100">
                     </div>
                 </div>
 <!--card 7-->
@@ -293,19 +329,20 @@
 
                     <div class="absolute inset-0 from-purple-400/10 via-transparent to-blue-400/10 rounded-3xl"></div>
                     <div class="flex justify-center mt-5 mb-6 relative z-10">
-                    <div class="relative group">
-                    <div class="group-hover:blur-lg transition-all duration-500"></div>
-                    <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
-                    src="./assets/images/img-course.png" 
-                    alt="Profile Image">
-                    </div>
+                        <div class="relative group">
+                            <div class="group-hover:blur-lg transition-all duration-500"></div>
+                            <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
+                            src="./assets/images/img-course.png" 
+                            alt="image de la couleur grise">
+                        </div>
                     </div>
 
                     <div class="text-center mb-3 relative z-10">
                         <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">
                             <span class="relative inline-block">
                             Résoudre des problèmes
-                            <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
+                                </span>
                             </span>
                         </h2>
                             <p class="mt-3 mb-2.5 text-lg font-extrabold text-purple-400">15,99 € <span class="inline-block align-text-top text-xs text-purple-200 font-extralight line-through">60 €</span></p>
@@ -316,7 +353,7 @@
                     Inspirez, motivez et fédérez votre équipe
                     </p>
                     <div class="flex justify-center">
-                        <img src="./assets/icons/note.4.png" width="100" height="auto">
+                        <img src="./assets/icons/note.4.png" alt="image de 4 étoiles jaunes" width="100">
                     </div>
                 </div>
 <!--card 8-->
@@ -326,19 +363,20 @@
 
                     <div class="absolute inset-0 from-purple-400/10 via-transparent to-blue-400/10 rounded-3xl"></div>
                     <div class="flex justify-center mt-5 mb-6 relative z-10">
-                    <div class="relative group">
-                    <div class="group-hover:blur-lg transition-all duration-500"></div>
-                    <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
-                    src="./assets/images/img-course.png" 
-                    alt="Profile Image">
-                    </div>
+                        <div class="relative group">
+                            <div class="group-hover:blur-lg transition-all duration-500"></div>
+                            <img class="w-40 h-40 object-cover grayscale rounded-full border-4 border-white/80 shadow-xl hover:scale-105 transform transition-all duration-400 relative z-10" 
+                            src="./assets/images/img-course.png" 
+                            alt="image de la couleur grise">
+                        </div>
                     </div>
 
                     <div class="text-center mb-3 relative z-10">
                         <h2 class="text-3xl font-bold text-white mb-2 tracking-tight">
                             <span class="relative inline-block">
                             Leadership positif
-                            <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                                <span class="absolute bottom-0 left-0 w-full h-1 from-purple-400 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
+                                </span>
                             </span>
                         </h2>
                             <p class="mt-3 mb-2.5 text-lg font-extrabold text-purple-400">15,99 € <span class="inline-block align-text-top text-xs text-purple-200 font-extralight line-through">60 €</span></p>
@@ -348,7 +386,7 @@
                     Inspirez, motivez et fédérez votre équipe
                     </p>
                     <div class="flex justify-center">
-                        <img src="./assets/icons/note.4.png" width="100" height="auto">
+                        <img src="./assets/icons/note.4.png" alt="image de 4 étoiles jaunes" width="100">
                     </div>
                 </div> 
             </div>
@@ -356,219 +394,249 @@
 
 <!--Créer une formation avec Klivio-->
 
-        <section class="bg-black">
-            <div class="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-32 bg-black">
-                <img class="w-full rounded-[15px] max-w-4xl mt-20 mb-20 opacity-50 mask-t-from-40% mask-b-from-30%" src="./assets/images/become-author.png" alt="">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <h2 class="text-white text-4xl font-light leading-68px md:text-5xl md:leading-84px max-w-xl text-center">
-                    Créer vos formations avec Klivio
-                    </h2>       
-                </div>
+        <div class="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-32 bg-black">
+            <img class="w-full rounded-[15px] max-w-4xl mt-20 mb-20 opacity-50 mask-t-from-40% mask-b-from-30%" src="./assets/images/become-author.png" alt="photo d'un bureau vu du haut">
+            <div class="absolute inset-0 flex items-center justify-center">
+                <h2 class="text-white text-4xl ml-3 mr-3 font-light leading-68px md:text-5xl md:leading-84px max-w-xl text-center">
+                Créer vos formations avec Klivio
+                </h2>       
             </div>
-        </section>
+        </div>
 
-        <section class="bg-black mb-10">
-            <div class="flex justify-center items-center">
+        <div class="bg-black mb-10">
+            <div class="flex justify-center items-center ml-3 mr-3">
                 <div class="relative cursor-pointer dark:text-white max-w-2xl">
                     <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-300 rounded-lg"></span>
                     <div class="relative p-6 bg-black border-2 border-purple-400 rounded-lg hover:scale-105 transition duration-500">
 
-                    <div class="flex items-center mt-2 mb-2">
-                    <span class="text-xl">
-                        <img src="./assets/icons/coin-hand.svg" class="min-w-6 mr-4 grayscale" alt="logo d'une flèche vers le haut" width="30" height="auto">
-                    </span>
-                    <p class="text-gray-600 dark:text-gray-300">
-                    Commission unique, au pourcentage sur les ventes
-                    </p>
-                    </div>
+                        <div class="flex items-center mt-2 mb-2">
+                            <span>
+                                <img src="./assets/icons/coin-hand.svg" class="min-w-6 mr-4 grayscale" alt="logo d'une flèche vers le haut" width="30">
+                            </span>
+                            <p class="text-gray-600 dark:text-gray-300">
+                            Commission unique, au pourcentage sur les ventes
+                            </p>
+                        </div>
 
-                    <div class="flex items-center mt-2 mb-2">
-                    <span class="text-xl">
-                        <img src="./assets/icons/Icon.svg" class="min-w-6 mr-4 grayscale" alt="logo d'un crayon" width="30" height="auto">
-                    </span>
-                    <p class="text-gray-600 dark:text-gray-300">
-                    Mise en avant sur la plateforme
-                    </p>
-                    </div>
+                        <div class="flex items-center mt-2 mb-2">
+                            <span>
+                                <img src="./assets/icons/Icon.svg" class="min-w-6 mr-4 grayscale" alt="logo d'un crayon" width="30">
+                            </span>
+                            <p class="text-gray-600 dark:text-gray-300">
+                            Mise en avant sur la plateforme
+                            </p>
+                        </div>
 
-                    <div class="flex items-center mt-2 mb-2">
-                    <span class="text-xl">
-                        <img src="./assets/icons/pencil-01.svg" class="min-w-6 mr-4 grayscale" alt="logo de téléchargement">
-                    </span>
-                    <p class="text-gray-600 dark:text-gray-300">
-                    Contrôle total sur le cours : contenu, prix
-                    </p>
-                    </div>
+                        <div class="flex items-center mt-2 mb-2">
+                            <span>
+                                <img src="./assets/icons/pencil-01.svg" class="min-w-6 mr-4 grayscale" alt="logo de téléchargement">
+                            </span>
+                            <p class="text-gray-600 dark:text-gray-300">
+                            Contrôle total sur le cours : contenu, prix
+                            </p>
+                        </div>
 
-                    <div class="flex items-center mt-2 mb-2">
-                    <span class="text-xl">
-                        <img src="./assets/icons/settings.svg" class="min-w-6 mr-5 grayscale" alt="logo d'étoile">
-                    </span>
-                    <p class="text-gray-600 dark:text-gray-300">
-                    Fonctionnalités avancées : espace commentaires, possibilité de créer des QCM,
-                    exercices, vidéos, téléchargement en PDF, suivi des statistiques des ventes,
-                    gestion de codes promos, gestion de la facturation, etc
-                    </p>
-                    
-                    </div>
+                        <div class="flex items-center mt-2 mb-2">
+                            <span>
+                                <img src="./assets/icons/settings.svg" class="min-w-6 mr-5 grayscale" alt="logo d'étoile">
+                            </span>
+                            <p class="text-gray-600 dark:text-gray-300">
+                            Fonctionnalités avancées : espace commentaires, possibilité de créer des QCM,
+                            exercices, vidéos, téléchargement en PDF, suivi des statistiques des ventes,
+                            gestion de codes promos, gestion de la facturation, etc
+                            </p>
+                        </div>
 
-                    <div class="flex items-center mt-2 mb-2">
-                    <span class="text-xl">
-                        <img src="./assets/icons/user-profile-square.svg" class="min-w-6 mr-5 grayscale" alt="logo d'horloge" width="30" height="auto">
-                    </span>
-                    <p class="text-gray-600 dark:text-gray-300">
-                    Le professeur reste 100% propriétaire de sa formation et conserve tous ses droits d’auteur
-                    </p>
-                    </div>
+                        <div class="flex items-center mt-2 mb-2">
+                            <span>
+                                <img src="./assets/icons/user-profile-square.svg" class="min-w-6 mr-5 grayscale" alt="logo d'horloge" width="30">
+                            </span>
+                            <p class="text-gray-600 dark:text-gray-300">
+                            Le professeur reste 100% propriétaire de sa formation et conserve tous ses droits d’auteur
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
 <!--Avantages-->
 
         <section class="bg-black">
             <div class="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-32 bg-black">
-                <img class="w-full rounded-[15px] max-w-4xl mt-20 mb-20 opacity-50 mask-t-from-40% mask-b-from-30%" src="./assets/images/avantages.png" alt="">
+                <img class="w-full max-w-4xl mt-20 mb-20 opacity-50 mask-t-from-40% mask-b-from-30%" src="./assets/images/avantages.png" alt="photo d'une dame à son bureau">
                 <div class="absolute inset-0 flex items-center justify-center">
-                    <h2 class="text-white text-4xl font-light leading-68px md:text-6xl md:leading-84px max-w-2xl text-center">Les Avantages de Klivio</h2>
+                    <h2 class="text-white text-4xl ml-3 mr-3 font-light leading-68px md:text-6xl md:leading-84px max-w-2xl text-center">Les Avantages de Klivio</h2>
                 </div>
             </div>
         </section>
 
-        <section class="bg-black">
-            <div class="flex justify-center items-center">
+        <div class="bg-black">
+            <div class="flex justify-center items-center ml-3 mr-3">
                 <div class="relative cursor-pointer dark:text-white">
                     <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-indigo-300 rounded-lg"></span>
                     <div class="relative p-6 bg-black border-2 border-purple-400 rounded-lg hover:scale-105 transition duration-500">
 
-                    <div class="flex items-center mt-2 mb-2">
-                    <span class="text-xl">
-                        <img src="./assets/icons/arrow-up-right.svg" class="min-w-6 mr-2 ml-2 grayscale" alt="logo d'une flèche vers le haut">
-                    </span>
-                    <p class="text-gray-600 dark:text-gray-300">
-                    Suivi de sa progression
-                    </p>
-                    </div>
+                        <div class="flex items-center mt-2 mb-2">
+                            <span>
+                                <img src="./assets/icons/arrow-up-right.svg" class="min-w-6 mr-2 ml-2 grayscale" alt="logo d'une flèche vers le haut">
+                            </span>
+                            <p class="text-gray-600 dark:text-gray-300">
+                            Suivi de sa progression
+                            </p>
+                        </div>
 
-                    <div class="flex items-center mt-2 mb-2">
-                    <span class="text-xl">
-                        <img src="./assets/icons/edit-01.svg" class="min-w-6 mr-2 ml-2 grayscale" alt="logo d'un crayon">
-                    </span>
-                    <p class="text-gray-600 dark:text-gray-300">
-                    Exercices et QCM pour la mise en pratique
-                    </p>
-                    </div>
+                        <div class="flex items-center mt-2 mb-2">
+                            <span>
+                                <img src="./assets/icons/edit-01.svg" class="min-w-6 mr-2 ml-2 grayscale" alt="logo d'un crayon">
+                            </span>
+                            <p class="text-gray-600 dark:text-gray-300">
+                            Exercices et QCM pour la mise en pratique
+                            </p>
+                        </div>
 
-                    <div class="flex items-center mt-2 mb-2">
-                    <span class="text-xl">
-                        <img src="./assets/icons/download-02.svg" class="min-w-6 mr-2 ml-2 grayscale" alt="logo de téléchargement">
-                    </span>
-                    <p class="text-gray-600 dark:text-gray-300">
-                    Possibilité de télécharger/imprimer les formations
-                    </p>
-                    </div>
+                        <div class="flex items-center mt-2 mb-2">
+                            <span>
+                                <img src="./assets/icons/download-02.svg" class="min-w-6 mr-2 ml-2 grayscale" alt="logo de téléchargement">
+                            </span>
+                            <p class="text-gray-600 dark:text-gray-300">
+                            Possibilité de télécharger/imprimer les formations
+                            </p>
+                        </div>
 
-                    <div class="flex items-center mt-2 mb-2">
-                    <span class="text-xl">
-                        <img src="./assets/icons/greenstar.svg" class="min-w-6 mr-3 ml-2 grayscale" alt="logo d'étoile">
-                    </span>
-                    <p class="text-gray-600 dark:text-gray-300">
-                    Contenu qualitatif et vérifié
-                    </p>
-                    </div>
+                        <div class="flex items-center mt-2 mb-2">
+                            <span>
+                                <img src="./assets/icons/greenstar.svg" class="min-w-6 mr-3 ml-2 grayscale" alt="logo d'étoile">
+                            </span>
+                            <p class="text-gray-600 dark:text-gray-300">
+                            Contenu qualitatif et vérifié
+                            </p>
+                        </div>
 
-                    <div class="flex items-center mt-2 mb-2">
-                    <span class="text-xl">
-                        <img src="./assets/icons/clock-backward.svg" class="min-w-6 mr-2 ml-2 grayscale" alt="logo d'horloge">
-                    </span>
-                    <p class="text-gray-600 dark:text-gray-300">
-                    Suivi en autonomie, 24h/24h, 7j/7
-                    </p>
-                    </div>
+                        <div class="flex items-center mt-2 mb-2">
+                            <span>
+                                <img src="./assets/icons/clock-backward.svg" class="min-w-6 mr-2 ml-2 grayscale" alt="logo d'horloge">
+                            </span>
+                            <p class="text-gray-600 dark:text-gray-300">
+                            Suivi en autonomie, 24h/24h, 7j/7
+                            </p>
+                        </div>
 
-                    <div class="flex items-center mt-2 mb-2">
-                    <span class="text-xl">
-                        <img src="./assets/icons/annotation-typing.svg" class="min-w-6 mr-2 ml-2 grayscale" alt="logo de commentaire">
-                    </span>
-                    <p class="text-gray-600 dark:text-gray-300">
-                    Espaces d'échanges dédiés pour poser des questions sur les formations
-                    </p>
-                    </div>
+                        <div class="flex items-center mt-2 mb-2">
+                            <span>
+                                <img src="./assets/icons/annotation-typing.svg" class="min-w-6 mr-2 ml-2 grayscale" alt="logo de commentaire">
+                            </span>
+                            <p class="text-gray-600 dark:text-gray-300">
+                            Espaces d'échanges dédiés pour poser des questions sur les formations
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
 
 <!--Avis-->
+
         <section class="bg-black">
             <div class="relative flex flex-col items-center justify-center text-sm px-4 mt-15 md:px-16 lg:px-24 xl:px-32 bg-black">
-                <img class="w-full rounded-[15px] max-w-4xl mt-20 mb-20 opacity-50 grayscale-65 mask-t-from-40% mask-b-from-30%" src="./assets/images/img-course.png" alt="">
+                <img class="w-full max-w-4xl mt-20 mb-1 opacity-50 grayscale-65 mask-t-from-40% mask-b-from-30%" src="./assets/images/img-course.png" alt="image de la couleur grise">
                 <div class="absolute inset-0 flex items-center justify-center">
                     <h2 class="text-white text-4xl font-light leading-68px md:text-6xl md:leading-84px max-w-2xl text-center">Avis Clients</h2>
                 </div>
             </div>
         </section>
 
-            <div class="max-w-200 mr-5 ml-5 mb-5 mt-5 md:max-w-66">
-                <figure class="flex items-center space-x-4">
-                    <div class="max-w-auto w-3/4 relative overflow-hidden z-10 bg-black p-6 rounded-lg shadow-md before:w-70 before:h-40 before:absolute before:bg-purple-500 before:rounded-full before:-z-10 before:blur-2xl">
-                        <figcaption class="flex items-center space-x-4">
-                    <img src="./assets/images/juliette.png" alt="photo de Juliette" class="flex-none w-14 h-14 rounded-full object-cover">
-                <div class="flex-auto">
-                <div class="text-base text-slate-900 font-semibold dark:text-slate-200">
-                    Juliette
-                </div>
-                <img src="./assets/icons/note.png" width="70" height="auto" class="mt-1 ml-0.5">
-                </div>
-                </figcaption>
-                <blockquote class="mt-6 text-slate-700 dark:text-slate-300 text-right">
-                    <p>J’ai trouvé le parcours très bien structuré : vidéos courtes, quizzes pertinents et projets pratiques qui m’ont permis d’appliquer immédiatement les notions. 
-                    L’interface est claire et la progression est motivante — parfait pour se former en autonomie.</p>
-                </blockquote>
-                </figure>
-            </div>
+        <section class="bg-black">
+            <div class="flex flex-wrap items-stretch justify-center gap-6 md:gap-8 mt-10 px-6 md:px-16 lg:px-24 xl:px-32">
 
-            <div class="max-w-200 mr-5 ml-5 mb-5 mt-5 md:max-w-66">
-                <figure class="relative flex flex-col-reverse">
-                    <div class="max-w-auto w-3/4 relative overflow-hidden z-10 bg-black p-6 rounded-lg shadow-md before:w-70 before:h-40 before:absolute before:bg-cyan-500 before:rounded-full before:-z-10 before:blur-2xl">
-                        <figcaption class="flex items-center space-x-4">
-                    <img src="./assets/images/camille.png" alt="photo de Camille" class="flex-none w-14 h-14 rounded-full object-cover">
-                <div class="flex-auto">
-                <div class="text-base text-slate-900 font-semibold dark:text-slate-200">
-                    Camille
+                <div class="max-w-sm w-full bg-black border-2 border-purple-300 rounded-xl mt-20 mb-20">
+                    <div class="flex justify-center -mt-16 mb-4">
+                        <img class="w-32 h-32 object-cover rounded-full border-4 border-purple-200 shadow-md" src="./assets/images/juliette.png" alt="image de la couleur grise">
+                    </div>
+                    <div class="text-center mb-4">
+                        <h2 class="text-2xl font-semibold text-white">Juliette</h2>
+                    </div>
+                    <div class="flex justify-center mt-3 mb-3">
+                        <img src="./assets/icons/note.png" alt="image de 5 étoiles jaunes" width="100">
+                    </div>
+                    <p class="text-center text-white mb-6 px-4">
+                    J’ai trouvé le parcours très bien structuré : vidéos courtes, quizzes pertinents et projets pratiques qui m’ont permis d’appliquer immédiatement les notions. 
+                    L’interface est claire et la progression est motivante — parfait pour se former en autonomie.
+                    </p>
                 </div>
-                <img src="./assets/icons/note.png" width="70" height="auto" class="mt-1 ml-0.5">
+
+
+                <div class="max-w-sm w-full bg-black border-2 border-purple-300 rounded-xl mt-20 mb-20">
+                    <div class="flex justify-center -mt-16 mb-4">
+                        <img class="w-32 h-32 object-cover rounded-full border-4 border-purple-200 shadow-md" src="./assets/images/camille.png" alt="image de la couleur grise">
+                    </div>
+                    <div class="text-center mb-4">
+                        <h2 class="text-2xl font-semibold text-white">Camille</h2>
+                    </div>
+                    <div class="flex justify-center mt-3 mb-3">
+                        <img src="./assets/icons/note.png" alt="image de 5 étoiles jaunes" width="100">
+                    </div>
+                    <p class="text-center text-white mb-6 px-4">
+                    Bon équilibre entre théorie et pratique. Les chapitres sont détaillés, et le support et les corrections automatiques ont vraiment aidé. 
+                    Idéal pour démarrer et progresser rapidement.
+                    </p>
                 </div>
-                </figcaption>
-                <blockquote class="mt-6 text-slate-700 dark:text-slate-300 text-right">
-                    <p>Bon équilibre entre théorie et pratique. Les chapitres sont détaillés, et le support et les corrections automatiques ont vraiment aidé. 
-                Idéal pour démarrer et progresser rapidement.</p>
-                </blockquote>
-                </figure>
+
+            </div>
+        </section>
+
+<!--A Propos-->
+
+        <section class="bg-black">
+            <div class="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-32 bg-black">
+                <img class="w-full max-w-4xl mt-20 mb-20 grayscale-75 opacity-50 mask-t-from-40% mask-b-from-30%" src="./assets/images/logo.png" alt="image de la couleur grise">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <h2 class="text-white text-4xl ml-3 mr-3 font-light leading-68px md:text-6xl md:leading-84px max-w-2xl text-center">À Propos de Klivio</h2>
+                </div>
+            </div>
+        </section>
+
+        <div class="bg-black">
+            <div class="flex justify-center items-center ml-3 mr-3 mt-5 mb-30">
+                <div class="max-w-xl relative">
+                    <div class="absolute -inset-1 bg-linear-to-r from-cyan-900 to-violet-600 rounded-lg blur"></div>
+                    <div class="relative px-7 py-6 bg-black ring-1 ring-amber-50 rounded-lg leading-none flex items-top justify-start space-x-6">
+                        <div class="space-y-2">
+                            <p class="text-white text-lg/relaxed opacity-70">Chez Klivio, nous défendons des valeurs fondamentales qui définissent notre approche éducative. 
+                            Nous nous engageons à assurer une rémunération équitable pour les créateurs de contenu, reconnaissant la qualité de leur travail.
+                            <br>
+                            <br>
+                            Favorisant l'autonomie d'apprentissage, notre plateforme offre la flexibilité  nécessaire pour explorer divers sujets. 
+                            La transparence est au cœur de notre démarche, garantissant une clarté totale sur les formations que les instructeurs proposent. 
+                            Ensemble, ces valeurs forment le socle d'une  éducation enrichissante et équitable, guidant notre mission d'offrir des opportunités d'apprentissage de qualité.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-</section>
 
 <!--Contact-->
-    <section class="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-32 bg-black">
-        <div class="max-w-auto w-3/4 relative overflow-hidden z-10 bg-black p-6 rounded-lg shadow-md before:w-90 before:h-90 before:absolute before:bg-purple-500 before:rounded-full before:-z-10 before:blur-2xl after:w-80 after:h-65 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
-            <h2 class="text-2xl text-center text-white font-bold mb-6">Nous Contacter</h2>
+
+    <section class="relative flex flex-col items-center justify-center text-sm px-4 mt-10 mb- md:px-16 lg:px-24 xl:px-32 bg-black">
+        <div class="max-w-auto w-3/4 relative overflow-hidden z-10 bg-black p-6 rounded-lg shadow-md 
+        before:w-30 before:h-30 before:absolute before:bg-purple-500 before:rounded-full before:-z-10 before:blur-2xl 
+        after:w-50 after:h-50 after:absolute after:bg-cyan-500 after:rounded-full after:-z-10 after:blur-xl after:-bottom-10 after:-right-12">
+            <h2 class="text-2xl text-center text-white font-bold mb-6">
+                Nous Contacter
+            </h2>
                 <form method="post" action="#">
                     <div class="mb-4">
-                        <input class="mt-1 p-2 w-full rounded-md border-2 border-purple-500/30 text-white" 
-                        placeholder="Nom"
-                        type="text" required/>
+                        <input class="mt-1 p-2 w-full rounded-md border-2 border-purple-500/30 text-white" placeholder="Nom" type="text" required>
                     </div>
 
                     <div class="mb-4">
-                        <input class="mt-1 p-2 w-full border-2 border-purple-500/30 rounded-md text-white" placeholder="Email" name="email" id="email" type="email" required/>
+                        <input class="mt-1 p-2 w-full border-2 border-purple-500/30 rounded-md text-white" placeholder="Email" name="email" id="email" type="email" required>
                     </div>
 
                     <div class="mb-4">
-                        <textarea class="mt-1 p-2 w-full border-2 border-purple-500/30 rounded-md text-white" rows="7" name="bio" id="bio"
-                        placeholder="Votre Message" required></textarea>
+                        <textarea class="mt-1 p-2 w-full border-2 border-purple-500/30 rounded-md text-white" rows="10" name="bio" id="bio" placeholder="Votre Message" required>
+                        </textarea>
                     </div>
 
                     <div class="flex justify-center"> 
@@ -581,41 +649,86 @@
         </div>
     </section>
 
+    </main>
+
 <!--Footer-->
 
-<footer class="flex flex-wrap justify-center lg:justify-between overflow-hidden gap-10 md:gap-20 py-16 px-6 md:px-16 lg:px-24 xl:px-32 text-[13px] text-gray-500 bg-black">
-    <div class="flex flex-wrap items-start gap-10 md:gap-60px xl:gap-140px">
-        <img class="grayscale" src="./assets/images/logo.png" width="45" height="auto" viewBox="0 0 31 34" fill="none">
+    <footer class="bg-black">
+        <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-7xl md:px-24 lg:px-8">
+            <div class="grid row-gap-10 mb-8 lg:grid-cols-6">
+                <div class="grid grid-cols-4 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
 
-        <div>
-            <p class="text-slate-100 font-semibold">Mentions légales</p>
-            <ul class="mt-2 space-y-2">
-                <li><a href="/" class="hover:text-purple-700 transition">CGU</a></li>
-                <li><a href="/" class="hover:text-purple-700 transition">CGV</a></li>
-                <li><a href="/" class="hover:text-purple-700 transition">FAQ</a></li>
-                <li><a href="/" class="hover:text-purple-700 transition">Contact</a></li>
-            </ul>
+                    <div>
+                        <p class="font-medium tracking-wider text-gray-300">Mentions légales</p>
+                        <ul class="mt-2 space-y-2">
+                            <li>
+                                <a class="text-gray-500 hover:text-purple-700 transition">CGU</a>
+                            </li>
+                            <li>
+                                <a class="text-gray-500 hover:text-purple-700 transition">CGV</a>
+                            </li>
+                            <li>
+                                <a class="text-gray-500 hover:text-purple-700 transition">FAQ</a>
+                            </li>
+                            <li>
+                                <a class="text-gray-500 hover:text-purple-700 transition">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <p class="font-medium tracking-wider text-gray-300">Coordonnées</p>
+                        <ul class="mt-2 space-y-2">
+                            <li>
+                                <p class="text-gray-500">1 place république,<br>75003</p>
+                            </li>
+                            <li>
+                                <p class="text-gray-500">01.02.03.04.05</p>
+                            </li>
+                            <li>
+                                <p class="text-gray-500">contact@klivio.fr</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <button class="text-white ml-10 mb-5 px-6 py-2.5 bg-purple-600 hover:bg-purple-700 active:scale-95 transition-all rounded-full">
+                        Inscription
+                        </button>
+
+                        <button class="text-white ml-10 mb-5 px-6 py-2.5 border border-purple-900 hover:bg-purple-950/50 active:scale-95 transition rounded-full h-11">
+                        Connexion
+                        </button>
+                    </div>
+                </div>
+
+                <div class="md:max-w-md lg:col-span-2">
+                    <img class="grayscale mt-10" src="./assets/images/logo.png" alt="logo klivio" width="100">
+                </div>
+            </div>
+
+            <div class="flex flex-row justify-between pt-5 pb-10 border-t border-gray-800 sm:flex-row">
+                <p class="text-sm text-gray-500">
+                © Klivio - 2025
+                </p>
+                <div class="flex items-center-safe space-x-4 sm:mt-0">
+                    <p class="text-sm text-gray-500">Suivez-nous</p>
+                        <span>
+                            <img src="./assets/icons/fb.svg" class="grayscale max-w-4" alt="logo facebook">
+                        </span>
+                        <span>
+                            <img src="./assets/icons/X.svg" class="grayscale max-w-4" alt="logo X">
+                        </span>
+                        <span>
+                            <img src="./assets/icons/Insta.svg" class="grayscale max-w-4" alt="logo instagram">
+                        </span>
+                        <span>
+                            <img src="./assets/icons/linkedin.svg" class="grayscale max-w-4" alt="logo linkedin">
+                        </span>
+                </div>
+            </div>
         </div>
-        <div>
-            <p class="text-slate-100 font-semibold">Coordonnées</p>
-            <ul class="mt-2 space-y-2">
-                <li><a href="/" class="hover:text-purple-700 transition">1 place république,<br>75003</a></li>
-                <li><a href="/" class="hover:text-purple-700 transition">01.02.03.04.05</a></li>
-                <li><a href="/" class="hover:text-purple-700 transition">contact@klivio.fr</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="flex flex-col max-md:items-center max-md:text-center gap-2 items-end">
-        <p class="max-w-60"><br>Suivez-nous</p>
-
-                <ul class="mt-2 space-y-2">
-                <li><a href="/" class="hover:text-purple-700 transition">Inscription</a></li>
-                <li><a href="/" class="hover:text-purple-700 transition">Connexion</a></li>
-            </ul>
-
-        <p class="mt-3 text-center">© Klivo - 2025</p>
-    </div>
-</footer>
-
+    </footer>
 </body>
+
 </html>
